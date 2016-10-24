@@ -29,12 +29,15 @@
     <link href="../../external/codemirror/lib/codemirror.css" rel="stylesheet" />
     <link href="../../external/codemirror/theme/twilight.css" rel="stylesheet" />
     <link href="../playground.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="../../external/pep/pep.js"></script>
     <script src="../../external/marked/marked.js"></script>
     <script src="../../external/codemirror/lib/codemirror.js"></script>
     <script src="../../external/codemirror/mode/javascript/javascript.js"></script>
     <script src="../../external/bezier-js/bezier.js"></script>
     <script src="../../external/opentype/opentype.js"></script>
+    <script src="../assets/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
     <script>
         //pretend we are in node
@@ -91,6 +94,7 @@
     <script src="../../src/models/SCurve.js"></script>
     <script src="../../src/models/Star.js"></script>
     <script src="../../src/models/Text.js"></script>
+
 
     <script>
         //pretend it's been required
@@ -161,9 +165,9 @@
             <div id="notes"></div>
         </section>
 
-        <!--section id="download">
+        <section id="download">
 
-            <div id="download-select">
+            <!--div id="download-select">
                 <h2>Choose a file format to download your customized drawing <span class="unitless">(units will be millimeters)</span></h2>
 
                 <button href="#" onclick="MakerJsPlayground.downloadClick(this, MakerJsPlaygroundExport.ExportFormat.Dxf);">.dxf</button>
@@ -194,9 +198,68 @@
                 <div class="onscreen-help">
                     If your browser does not support the download button above, <button onclick="MakerJsPlayground.copyToClipboard()">copy the text above</button> and paste into a new text file named <b id="download-filename">myfile.txt</b> on your computer.
                 </div>
-            </div>
+            </div-->
 
-        </section-->
+
+            <div class="well" style="width:300px; padding: 8px 0;">
+                <div style="overflow-y: scroll; overflow-x: hidden; height: 500px;">
+                    <ul class="nav nav-list">
+                        <li><label class="tree-toggler nav-header">Lessons</label>
+                            <ul class="nav nav-list tree">
+                                <li><a href="./basic.html">Basic</a></li>
+                                <li><a href="./line.html">Line</a></li>
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li><label class="tree-toggler nav-header">Drafts</label>
+                            <ul class="nav nav-list tree">
+                                <li><a href="#">Link</a></li>
+                                <li><a href="#">Link</a></li>
+                                <li><label class="tree-toggler nav-header">Header 2.1</label>
+                                    <ul class="nav nav-list tree">
+                                        <li><a href="#">Link</a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li><label class="tree-toggler nav-header">Header 2.1.1</label>
+                                            <ul class="nav nav-list tree">
+                                                <li><a href="#">Link</a></li>
+                                                <li><a href="#">Link</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><label class="tree-toggler nav-header">Header 2.2</label>
+                                    <ul class="nav nav-list tree">
+                                        <li><a href="#">Link</a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li><label class="tree-toggler nav-header">Header 2.2.1</label>
+                                            <ul class="nav nav-list tree">
+                                                <li><a href="#">Link</a></li>
+                                                <li><a href="#">Link</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('label.tree-toggler').click(function () {
+                        $(this).parent().children('ul.tree').toggle(300);
+                    });
+                });
+            </script>
+            <style media="screen">
+                .nav-list .tree{
+                    display: none;
+                }
+            </style>
+
+        </section>
 
         <section class="editor">
             <div>
