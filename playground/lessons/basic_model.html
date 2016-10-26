@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Maker.js Playground</title>
@@ -95,7 +95,6 @@
     <script src="../../src/models/Star.js"></script>
     <script src="../../src/models/Text.js"></script>
 
-
     <script>
         //pretend it's been required
         var makerjs = MakerJs;
@@ -116,13 +115,6 @@
     <a name="top"></a>
 
     <main>
-        <header class="logo">
-            <a href="http://microsoft.github.io/maker.js/"><img src="../m.png" /><h1>Maker.js</h1></a>
-
-            <div id="rendering-options-top">
-                <button onclick="MakerJsPlayground.toggleClassAndResize('collapse-rendering-options');">customize <span class="icon dropup">&#x25B4;</span><span class="icon dropdown">&#x25BE;</span></button>
-            </div>
-        </header>
 
         <section id="blueprint-canvas">
 
@@ -206,41 +198,26 @@
                     <ul class="nav nav-list">
                         <li><label class="tree-toggler nav-header">Lessons</label>
                             <ul class="nav nav-list tree">
-                                <li><a href="./basic.html">Basic</a></li>
-                                <li><a href="./line.html">Line</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
+                                <li><label class="tree-toggler nav-header" style="font-weight: 200; padding-left: 15px;">Shapes</label>
+                                    <ul class="nav nav-list tree">
+                                        <li><a href="./line.html">Line</a></li>
+                                        <li><a href="./circle.html">Circle</a></li>
+                                        <li><a href="./arc.html">Arc</a></li>
+                                    </ul>
+                                </li>
+                                <li><label class="tree-toggler nav-header" style="font-weight: 200; padding-left: 15px;">Models</label>
+                                    <ul class="nav nav-list tree">
+                                        <li><a href="./basic_model.html">Basic Model</a></li>
+                                        <li><a href="./model_with_input.html">Model with Input</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li class="divider"></li>
                         <li><label class="tree-toggler nav-header">Drafts</label>
-                            <ul class="nav nav-list tree">
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><label class="tree-toggler nav-header">Header 2.1</label>
-                                    <ul class="nav nav-list tree">
-                                        <li><a href="#">Link</a></li>
-                                        <li><a href="#">Link</a></li>
-                                        <li><label class="tree-toggler nav-header">Header 2.1.1</label>
-                                            <ul class="nav nav-list tree">
-                                                <li><a href="#">Link</a></li>
-                                                <li><a href="#">Link</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><label class="tree-toggler nav-header">Header 2.2</label>
-                                    <ul class="nav nav-list tree">
-                                        <li><a href="#">Link</a></li>
-                                        <li><a href="#">Link</a></li>
-                                        <li><label class="tree-toggler nav-header">Header 2.2.1</label>
-                                            <ul class="nav nav-list tree">
-                                                <li><a href="#">Link</a></li>
-                                                <li><a href="#">Link</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                            <ul class="nav nav-list tree drafts">
+                                <li><a href="./draft1.html">Draft1</a></li>
+                                <li><a href="./draft2.html">Drafts2</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -254,10 +231,12 @@
                 });
             </script>
             <style media="screen">
-                .nav-list .tree{
+                .nav-list .tree.drafts{
                     display: none;
                 }
             </style>
+
+
 
         </section>
 
@@ -274,18 +253,43 @@
                 <a name="code"></a>
 
                 <pre id="init-javascript-code">
+//render 2 instances of the same model
+
 var makerjs = require('makerjs');
 
-var line = {
-  type: 'line',
-  origin: [0, 0],
-  end: [50, 50]
- };
+function myModel() {
 
-var svg = makerjs.exporter.toSVG(line);
+ var line = {
+   type: 'line',
+   origin: [0, 0],
+   end: [50, 50]
+  };
+
+ var circle = {
+   type: 'circle',
+   origin: [0, 0],
+   radius: 50
+  };
+
+ var pathObject = { myLine: line, myCircle: circle };
+
+//set properties using the "this" keyword
+ this.paths = pathObject;
+}
+
+var model1 = new myModel();
+var model2 = new myModel();
+
+//they will be on top of each other, so let's move the origin
+model2.origin = [100, 0];
+
+var model = {
+  models: { "myModel1": model1, "myModel2": model2 }
+};
+
+var svg = makerjs.exporter.toSVG(model);
 
 document.write(svg);
-
 
 </pre>
             </div>

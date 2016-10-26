@@ -198,41 +198,26 @@
                     <ul class="nav nav-list">
                         <li><label class="tree-toggler nav-header">Lessons</label>
                             <ul class="nav nav-list tree">
-                                <li><a href="./basic.html">Basic</a></li>
-                                <li><a href="./line.html">Line</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
+                                <li><label class="tree-toggler nav-header" style="font-weight: 200; padding-left: 15px;">Shapes</label>
+                                    <ul class="nav nav-list tree">
+                                        <li><a href="./line.html">Line</a></li>
+                                        <li><a href="./circle.html">Circle</a></li>
+                                        <li><a href="./arc.html">Arc</a></li>
+                                    </ul>
+                                </li>
+                                <li><label class="tree-toggler nav-header" style="font-weight: 200; padding-left: 15px;">Models</label>
+                                    <ul class="nav nav-list tree">
+                                        <li><a href="./basic_model.html">Basic Model</a></li>
+                                        <li><a href="./model_with_input.html">Model with Input</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li class="divider"></li>
                         <li><label class="tree-toggler nav-header">Drafts</label>
-                            <ul class="nav nav-list tree">
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                                <li><label class="tree-toggler nav-header">Header 2.1</label>
-                                    <ul class="nav nav-list tree">
-                                        <li><a href="#">Link</a></li>
-                                        <li><a href="#">Link</a></li>
-                                        <li><label class="tree-toggler nav-header">Header 2.1.1</label>
-                                            <ul class="nav nav-list tree">
-                                                <li><a href="#">Link</a></li>
-                                                <li><a href="#">Link</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><label class="tree-toggler nav-header">Header 2.2</label>
-                                    <ul class="nav nav-list tree">
-                                        <li><a href="#">Link</a></li>
-                                        <li><a href="#">Link</a></li>
-                                        <li><label class="tree-toggler nav-header">Header 2.2.1</label>
-                                            <ul class="nav nav-list tree">
-                                                <li><a href="#">Link</a></li>
-                                                <li><a href="#">Link</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                            <ul class="nav nav-list tree drafts">
+                                <li><a href="./draft1.html">Draft1</a></li>
+                                <li><a href="./draft2.html">Drafts2</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -246,7 +231,7 @@
                 });
             </script>
             <style media="screen">
-                .nav-list .tree{
+                .nav-list .tree.drafts{
                     display: none;
                 }
             </style>
@@ -269,13 +254,19 @@
 
                 <pre id="init-javascript-code">
 var makerjs = require('makerjs');
-this.paths = {
-    head: new makerjs.paths.Circle([0, 0], 90),
-    eye: new makerjs.paths.Circle([25, 25], 10),
-    mouth: new makerjs.paths.Arc([0, 0], 50, 225, 315),
-    wink: new makerjs.paths.Line([-35, 20], [-15, 20])
-};
 
+
+var arc = {
+  type: 'arc',
+  origin: [0, 0],
+  radius: 1,
+  startAngle: 0,
+  endAngle: 45
+ };
+
+var svg = makerjs.exporter.toSVG(arc);
+
+document.write(svg);
 
 </pre>
             </div>
