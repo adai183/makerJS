@@ -253,12 +253,12 @@
                 <a name="code"></a>
 
                 <pre id="init-javascript-code">
-//render 2 instances of the same model
+//render 2 instances of the same model with parameter
 
 var makerjs = require('makerjs');
 
 function myModel(input) {
-
+// components: cicle and line
  var line = {
    type: 'line',
    origin: [0, 0],
@@ -271,6 +271,7 @@ function myModel(input) {
    radius: input
   };
 
+// save components in path object
  var pathObject = { myLine: line, myCircle: circle };
 
 //set properties using the "this" keyword
